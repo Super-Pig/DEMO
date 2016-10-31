@@ -6,7 +6,9 @@
 - [修改配置文件](#修改配置文件)
 - [上传代码](#上传代码)
 - [远程部署](#远程部署)
+- [docker部署](#docker部署)
 - [Force deployment](#Force deployment)
+- [查看实时log](#查看实时log)
 - [Tips](#Tips)
 
 #生成配置文件
@@ -79,7 +81,7 @@
             "repo": "git@github.com:kpboluome/oto_saas_dianying.git",
 
             //指定远程服务器的代码目录
-            "path": "~/apps/dianying",
+            "path": "~/app/dianying",
 
             //post-deploy 钩子
             //该脚本在远程服务器执行
@@ -91,7 +93,7 @@
             "host": "139.198.3.124",
             "ref": "origin/master",
             "repo": "git@github.com:kpboluome/oto_saas_dianying.git",
-            "path": "~/apps/dianying",
+            "path": "~/app/dianying",
             "post-deploy": "npm install && pm2 startOrRestart ~/apps/dianying/current/ecosystem.json --env dev",
             "env": {
                 "NODE_ENV": "dev"
@@ -141,6 +143,31 @@ npm install && pm2 startOrRestart ~/apps/dianying/current/ecosystem.json --env p
 
 所以代码部署到服务器之后,服务器会自动启动进程
 
+#docker部署
+
+发现了一个问题, 同一台机器上运行多个程序, 会出现"环境变量污染".
+
+例如 app1 配置了一个环境变量 "REDIS_TCP_ADDR = 192.168.0.11", app2 配置了名字相同的环境变量 "REDIS_TCP_ADDR = 192.168.0.22", 由于环境变量是全局的, 这样就造成了两个同名的环境变量发生了冲突.
+
+解决方案是把程序发布到 docker 中
+
+```
+pm2-docker [app.js or ecosystem.json]
+```
+
+so, 修改 ecosystem.json 配置文件中的 post-deploy 钩子
+
+把
+```
+npm install && pm2 startOrRestart ~/apps/dianying/current/ecosystem.json --env pro
+```
+替换成
+```
+npm install && pm2-docker ~/apps/dianying/current/ecosystem.json --env pro
+```
+
+这样可以让程序在远程服务器上部署到docker中.
+
 #Force deployment
 
 如果本地代码有修改,而且没有上传到 git 服务器,这种情况下执行部署命令并不会成功,会返回以下结果
@@ -160,6 +187,30 @@ Deploy failed
 pm2 deploy ecosystem.json pro --force
 ```
 
+#查看实时log
+
+pm2 logs [\<App name\> | \<id\>]
+
+App name: 进程名字(可选)
+
+id: 进程id(可选)
+
+如果不传参数,可以查看所有进程的实时log
+
+如果只需要查看某个进程的实时log,就加上进程名字或者id
+
+```
+pm2 logs
+```
+
+```
+pm2 logs 0
+```
+
+```
+pm2 logs dianying
+```
+
 #Tips
 
 - 本地代码如果有修改,而且没有提交,可以用 --force 参数强制部署
@@ -171,6 +222,8 @@ pm2 deploy ecosystem.json pro --force
 ```
 
 - 保证远程服务器有从 git server 拉取代码的权限
+
+- 可以用 pm2-docker ecosystem.json 命令把程序部署到 docker 中, 解决环境变量污染的问题. docker 的其他优势参考官方文档.
 
 - 可以配置多套环境,真对不同的环境配置不同的环境变量. 例如配置了一套 pro 环境,那么可以在 env_pro: {} 中定义相应的环境变量
 
