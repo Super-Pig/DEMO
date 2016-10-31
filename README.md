@@ -1,2 +1,2 @@
 # DEMO
-just for testing
+some notes
