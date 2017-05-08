@@ -7,7 +7,7 @@
 - [上传代码](#上传代码)
 - [远程部署](#远程部署)
 - [docker部署](#docker部署)
-- [Force deployment](#Force deployment)
+- [Force deployment] (#Force deployment)
 - [查看实时log](#查看实时log)
 - [Tips](#Tips)
 
