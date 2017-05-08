@@ -205,7 +205,7 @@ pm2 logs 0
 pm2 logs dianying
 ```
 
-#Tips
+# Tips
 
 - 本地代码如果有修改,而且没有提交,可以用 --force 参数强制部署
 
