@@ -145,17 +145,11 @@ npm install && pm2 startOrRestart ~/apps/dianying/current/ecosystem.json --env p
 
 #docker部署
 
-发现了一个问题, 同一台机器上运行多个程序, 会出现"环境变量污染".
-
-例如 app1 配置了一个环境变量 "REDIS_TCP_ADDR = 192.168.0.11", app2 配置了名字相同的环境变量 "REDIS_TCP_ADDR = 192.168.0.22", 由于环境变量是全局的, 这样就造成了两个同名的环境变量发生了冲突.
-
-解决方案是把程序发布到 docker 中
-
 ```
 pm2-docker [app.js or ecosystem.json]
 ```
 
-so, 修改 ecosystem.json 配置文件中的 post-deploy 钩子
+修改 ecosystem.json 配置文件中的 post-deploy 钩子
 
 把
 ```
