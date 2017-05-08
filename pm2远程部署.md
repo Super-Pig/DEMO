@@ -225,3 +225,4 @@ pm2 logs dianying
 
   configuration_file 参数有一个默认值:ecosystem.json    所以如果配置文件名字是 ecosystem.json, 那么可以省略掉这个参数
 
+
