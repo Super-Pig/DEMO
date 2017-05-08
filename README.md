@@ -1,2 +1,2 @@
-# DEMO
-some notes
+# DOCS
+My notes & docs
