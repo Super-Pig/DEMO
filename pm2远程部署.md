@@ -2,15 +2,15 @@
 
 ## 目录
 
-- [安装node和pm2](安装node和pm2)
-- [生成配置文件](#生成配置文件)
-- [修改配置文件](#修改配置文件)
-- [上传代码](#上传代码)
-- [远程部署](#远程部署)
-- [docker部署](#docker部署)
-- [Force deployment](#Force deployment)
-- [查看实时log](#查看实时log)
-- [Tips](#Tips)
+- [安装node和pm2](# 安装node和pm2)
+- [生成配置文件](# 生成配置文件)
+- [修改配置文件](# 修改配置文件)
+- [上传代码](# 上传代码)
+- [远程部署](# 远程部署)
+- [docker部署](# docker部署)
+- [Force deployment](# Force deployment)
+- [查看实时log](# 查看实时log)
+- [Tips](# Tips)
 
 # 安装node和pm2
 
