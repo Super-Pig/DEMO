@@ -12,33 +12,33 @@
 - [查看实时log](#查看实时log)
 - [Tips](#Tips)
 
-#安装node和pm2
+# 安装node和pm2
 
-##使用包管理工具安装node
+## 使用包管理工具安装node
 
 `refer: https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions`
 
 在ubuntu里用sudo apt-get install nodejs安装Node.js后，会发现terminals里运行node命令（比如node –-version）时候会有No such file or directory的错误。引起这个错误的主要的主要原因是Node.js在ubuntu上默认被装到了/usr/bin/nodejs目录下，所以默认只能用nodejs来调用。
 
-###解决方案一:
+### 解决方案一:
 
 `The nodejs-legacy package installs a node symlink that is needed by many modules to build and run correctly. The Node.js modules available in the distribution official repositories do not need it.`
 
-###解决方案二:
+### 解决方案二:
 
 `sudo ln -s /usr/bin/nodejs /usr/bin/node`
 
-##安装pm2
+## 安装pm2
 
 `sudo npm install pm2 -g`
 
-#生成配置文件
+# 生成配置文件
 
 在项目目录下执行 pm2 ecosystem , 生成一个 ecosystem.json 文件, 该文件是 pm2 远程部署的配置文件.
 
 要把该文件添加到 git 仓库, 因为远程服务器也要使用这个文件.
 
-#修改配置文件
+# 修改配置文件
 
 ```
 {
@@ -125,7 +125,7 @@
 
 ```
 
-#把最新代码上传到 git 服务器
+# 把最新代码上传到 git 服务器
 
 ```
 git add .
@@ -136,7 +136,7 @@ git push
 
 ```
 
-#远程部署
+# 远程部署
 
 ## 初始化远程服务器的代码目录
 
@@ -166,11 +166,6 @@ npm install && pm2 startOrRestart ~/apps/dianying/current/ecosystem.json --env p
 
 #docker部署
 
-发现了一个问题, 同一台机器上运行多个程序, 会出现"环境变量污染".
-
-例如 app1 配置了一个环境变量 "REDIS_TCP_ADDR = 192.168.0.11", app2 配置了名字相同的环境变量 "REDIS_TCP_ADDR = 192.168.0.22", 由于环境变量是全局的, 这样就造成了两个同名的环境变量发生了冲突.
-
-解决方案是把程序发布到 docker 中
 
 ```
 pm2-docker [app.js or ecosystem.json]
@@ -189,7 +184,7 @@ npm install && pm2-docker ~/apps/dianying/current/ecosystem.json --env pro
 
 这样可以让程序在远程服务器上部署到docker中.
 
-#Force deployment
+# Force deployment
 
 如果本地代码有修改,而且没有上传到 git 服务器,这种情况下执行部署命令并不会成功,会返回以下结果
 
@@ -208,7 +203,7 @@ Deploy failed
 pm2 deploy ecosystem.json pro --force
 ```
 
-#查看实时log
+# 查看实时log
 
 pm2 logs [\<App name\> | \<id\>]
 
@@ -232,7 +227,7 @@ pm2 logs 0
 pm2 logs dianying
 ```
 
-#Tips
+# Tips
 
 - 本地代码如果有修改,而且没有提交,可以用 --force 参数强制部署
 
@@ -244,12 +239,9 @@ pm2 logs dianying
 
 - 保证远程服务器有从 git server 拉取代码的权限
 
-- 可以用 pm2-docker ecosystem.json 命令把程序部署到 docker 中, 解决环境变量污染的问题. docker 的其他优势参考官方文档.
-
 - 可以配置多套环境,真对不同的环境配置不同的环境变量. 例如配置了一套 pro 环境,那么可以在 env_pro: {} 中定义相应的环境变量
 
 - pm2 deploy \<configuration_file\> \<environment\> \<command\>
 
   configuration_file 参数有一个默认值:ecosystem.json    所以如果配置文件名字是 ecosystem.json, 那么可以省略掉这个参数
-
 
