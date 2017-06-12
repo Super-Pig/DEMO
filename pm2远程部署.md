@@ -8,7 +8,7 @@
 - [上传代码](#上传代码)
 - [远程部署](#远程部署)
 - [docker部署](#docker部署)
-- [Force deployment](#Force deployment)
+- [Force deployment](#Force&nbsp;deployment)
 - [查看实时log](#查看实时log)
 - [Tips](#Tips)
 
@@ -164,7 +164,7 @@ npm install && pm2 startOrRestart ~/apps/dianying/current/ecosystem.json --env p
 
 所以代码部署到服务器之后,服务器会自动启动进程
 
-#docker部署
+# docker部署
 
 
 ```
