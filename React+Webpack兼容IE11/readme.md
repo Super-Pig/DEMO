@@ -114,6 +114,12 @@ import "react-app-polyfill/stable"
 
 3. 修改 webpack 配置
 
-由于项目本身有一些配置，比如 alias, less-loader. 这些配置项create-react-app 中默认是不包含的，因此需要对 webpack 的配置项做定制化
+由于项目本身有一些配置，比如 alias, less-loader. 这些配置项create-react-app 中默认是不包含的，因此需要对 webpack 的配置项做定制化，可以使用以下两种方案（由于时间有限，没有时间学习方案一，因此我采用的是方案二 - -！）
 
-3.1 https://github.com/timarney/react-app-rewired
+方案一
+
+> https://github.com/timarney/react-app-rewired
+
+方案二
+
+> `npm run eject`
