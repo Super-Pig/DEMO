@@ -67,17 +67,16 @@
 
         //环境变量
         "env": {
-            "SVC_APP": "http://192.168.0.2:21002/saas_app/v1",
-            "MONGODB_CONNECTION_STR": "root:Boluome123@192.168.0.7:27017,192.168.0.10:27017/boluome?authSource=admin&replicaSet=foba",
-            "SMS_SVC": "https://dev.api.boluomeet.com",
-            "SVC_PROMOTION": "http://192.168.0.6:8010/check_promotions",
-            "SVC_ORDER": "http://192.168.0.2:21003",
-            "REDIS_TCP_ADDR": "192.168.0.11",
-            "SVC_BASIS": "http://192.168.0.2:21001/basis/v1",
-            "MONGODB_CONNECTION_URL": "mongodb://root:Boluome123@192.168.0.10:27017,192.168.0.7:27017/boluome?authSource=admin&replicaSet=foba",
+            "SVC_APP": "",
+            "MONGODB_CONNECTION_STR": "",
+            "SMS_SVC": "",
+            "SVC_PROMOTION": "",
+            "SVC_ORDER": "",
+            "REDIS_TCP_ADDR": "",
+            "SVC_BASIS": "",
             "NODE_DEBUG": "DEBUG",
-            "SVC_PAY": "http://192.168.0.2:20000",
-            "REDIS_TCP_PORT": "6379"
+            "SVC_PAY": "",
+            "REDIS_TCP_PORT": ""
         },
         "env_pro": {
             "NODE_ENV": "production"
